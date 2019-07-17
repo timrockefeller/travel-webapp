@@ -40,19 +40,24 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 激活用户
+     * 
      * @param code
      * @return
      */
     public boolean active(String code) {
-        //1.根据激活码查询用户对象
+        // 1.根据激活码查询用户对象
         User user = userDao.findByCode(code);
-        if(user != null){
-            //2.调用dao的修改激活状态的方法
+        if (user != null) {
+            // 2.调用dao的修改激活状态的方法
             userDao.updateStatus(user);
             return true;
-        }else{
+        } else {
             return false;
         }
+    }
 
+    public User login(User user) {
+        return null;
+    }
 
 }
