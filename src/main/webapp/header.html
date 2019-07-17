@@ -4,7 +4,7 @@
 <script>
     $(function () {
         //查询用户信息
-        $.get("user/findOne",{},function (data) {
+        $.get("user/findback",{},function (data) {
            //{uid:1,name:'李四'}
            var msg = "欢迎回来，"+data.name;
            $("#span_username").html(msg);
@@ -53,7 +53,7 @@
             	
                 <span id="span_username"></span>
                 <a href="myfavorite.html" class="collection">我的收藏</a>
-                <a href="javascript:location.href='exitServlet';">退出</a>
+                <a href="javascript:location.href='user/exit';">退出</a>
             </div>
         </div>
         <div class="header_wrap">
