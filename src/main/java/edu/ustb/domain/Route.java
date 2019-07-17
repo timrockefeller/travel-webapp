@@ -181,4 +181,9 @@ public class Route implements Serializable {
     public void setSid(int sid) {
         this.sid = sid;
     }
+
+    @Override
+    public String toString() {
+        return "Route [cid=" + cid + ", rid=" + rid + ", sid=" + sid + "]";
+    }
 }
