@@ -20,8 +20,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.47</version>
-			<scope>compile</scope>
+			<version>8.0.15</version>
 		</dependency>
 		<!--beanUtils -->
 		<dependency>
@@ -78,5 +77,25 @@
   </dependencies>
   <build>
     <finalName>ustbtravel</finalName>
+    
+  <plugins>
+    <plugin>
+  	  <groupId>org.apache.tomcat.maven</groupId>
+  	  <artifactId>tomcat7-maven-plugin</artifactId>
+  	  <version>2.2</version>
+  	  <configuration>
+          <!-- ????????? -->
+		  <port>8081</port>
+		  <!-- ???????URL,/manager/text???????? -->
+          <url>http://127.0.0.1:8081/manager/text</url>
+		  <username>admin</username>
+		  <password>kitekii</password>
+		  <update>true</update>
+		  <!-- ????????,???????????? -->
+		  <path>/ustbtravel</path>
+      </configuration>
+  	</plugin>
+  </plugins>
   </build>
+
 </project>
