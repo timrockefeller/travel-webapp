@@ -51,8 +51,8 @@ public class RouteController extends BaseServlet {
     }
 
     /**
-     * 用户查询是否已标记收藏
-     *  需要session已保存user字段
+     * 查询当前是否已标记收藏 需要session已保存user字段
+     * 
      * @param request
      * @param response
      * @throws ServletException
@@ -70,9 +70,23 @@ public class RouteController extends BaseServlet {
         response.getWriter().write(json);
     }
 
+    /**
+     * 为当前用户收藏指定Route
+     * 
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     public void addFavorite(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("user");
+        int rid = Integer.parseInt(request.getParameter("rid"));
+        favoriteService.addFavorite(user, rid);
 
+        //TODO whether responce in none-param callback
+        response.setContentType("application/json;charset=utf-8");
+        response.getWriter().write("{}");
     }
 
 }
