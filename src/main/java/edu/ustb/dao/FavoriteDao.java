@@ -15,7 +15,7 @@ public interface FavoriteDao {
      * @param user
      * @return
      */
-    public List<Favorite> getFavoritesByUser(User user);
+    public List<Integer> getFavoritesRidByUser(User user);
 
     /**
      * 该用户是否对某一条线路添加收藏

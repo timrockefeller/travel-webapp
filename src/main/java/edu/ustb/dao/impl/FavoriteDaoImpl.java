@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import edu.ustb.dao.FavoriteDao;
+import edu.ustb.dao.RouteDao;
 import edu.ustb.domain.Favorite;
 import edu.ustb.domain.Route;
 import edu.ustb.domain.User;
@@ -21,19 +22,12 @@ public class FavoriteDaoImpl implements FavoriteDao{
 
     private JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
 
-    public List<Favorite> getFavoritesByUser(User user) {
-        List<Favorite> favlist = new ArrayList<Favorite>();
+    public List<Integer> getFavoritesRidByUser(User user) {
+        List<Integer> favlist = new ArrayList<Integer>();
 
-        List<Route> routes = null;
-        String sql = "select * from tab_favorite right join tab_route tr on tab_favorite.rid = tr.rid where uid=?";
-        routes = template.query(sql, new BeanPropertyRowMapper<Route>(Route.class), user.getUid());
-        for (Route route : routes) {
-            Favorite fav = new Favorite();
-            fav.setUser(user);
-            fav.setRoute(route);
-            fav.setDate(new Date().toString());
-            favlist.add(fav);
-        }
+        String sql = "select rid from tab_favorite where uid=?";
+        favlist = template.queryForList(sql, Integer.class, user.getUid());
+
         return favlist;
     }
 
@@ -41,9 +35,9 @@ public class FavoriteDaoImpl implements FavoriteDao{
         Favorite favorite = null;
         try {
             String sql = "select * from tab_favorite where rid = ? and uid = ?";
-            favorite = template.queryForObject(sql,new BeanPropertyRowMapper<Favorite>(Favorite.class),user.getUid(),rid );
+            favorite = template.queryForObject(sql,new BeanPropertyRowMapper<Favorite>(Favorite.class),rid,user.getUid());
         } catch (DataAccessException e) {
-            System.out.println("did not found fav, user not logged in?");
+            System.out.println("did not found fav, user not logged in? : "+user.getUid());
         }
         return favorite;
     }
