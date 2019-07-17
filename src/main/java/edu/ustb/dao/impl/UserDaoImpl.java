@@ -32,7 +32,7 @@ public class UserDaoImpl implements UserDao {
         // 2.执行sql
 
         template.update(sql, user.getUsername(), user.getPassword(), user.getName(), user.getBirthday(), user.getSex(),
-                user.getTelephone(), user.getEmail(), user.getStatus(), user.getCode());
+                user.getTelephone(), user.getEmail(), "Y", user.getCode());
     }
 
     /**

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -36,19 +37,27 @@ public class FavoriteDaoImpl implements FavoriteDao{
         return favlist;
     }
 
-    public boolean isFavorited(User user, int rid) {
-        String sql = "select count(*) from tab_favorite where uid=? and rid=?";
-        Long count = template.queryForObject(sql, Long.class, user.getUid(), rid);
-        if (count == 0) {
-            return false;
+    public Favorite getFavorited(User user, int rid) {
+        Favorite favorite = null;
+        try {
+            String sql = "select * from tab_favorite where rid = ? and uid = ?";
+            favorite = template.queryForObject(sql,new BeanPropertyRowMapper<Favorite>(Favorite.class),user.getUid(),rid );
+        } catch (DataAccessException e) {
+            System.out.println("did not found fav, user not logged in?");
         }
-        return true;
+        return favorite;
     }
 
  
     public int addFavorited(User user, int rid) {
         String sql = "insert into tab_favorite (rid, date, uid) VALUES (?, ?, ?)";
-        return template.update(sql,rid,new Date(),user.getUid());
+        return template.update(sql, rid, new Date(), user.getUid());
+    }
+
+    
+    public int findCountByRid(int rid) {
+        String sql = "select count(*) from tab_favorite where rid = ?";
+        return template.queryForObject(sql,Integer.class,rid);
     }
     
 }

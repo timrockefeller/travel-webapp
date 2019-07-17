@@ -26,7 +26,7 @@ public class FavoriteServiceImpl implements FavoriteService {
 
     public boolean isFavorite(User user, int rid) {
         try {
-            return favoriteDao.isFavorited(user, rid);
+            return favoriteDao.getFavorited(user, rid)!=null;
         } catch (Exception e) {
             e.printStackTrace();
         }

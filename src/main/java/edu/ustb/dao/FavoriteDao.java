@@ -9,10 +9,35 @@ import edu.ustb.domain.User;
  * FavorateDao
  */
 public interface FavoriteDao {
+
+    /**
+     * 单个用户的所有收藏线路
+     * @param user
+     * @return
+     */
     public List<Favorite> getFavoritesByUser(User user);
 
-    public boolean isFavorited(User user, int rid);
+    /**
+     * 该用户是否对某一条线路添加收藏
+     * @param user
+     * @param rid
+     * @return
+     */
+    public Favorite getFavorited(User user, int rid);
 
+    /**
+     * 添加收藏
+     * @param user
+     * @param rid
+     * @return
+     */
     public int addFavorited(User user, int rid);
 
+    /**
+     * 根据rid查询该线路的收藏次数
+     * 
+     * @param rid
+     * @return
+     */
+    public int findCountByRid(int rid);
 }
