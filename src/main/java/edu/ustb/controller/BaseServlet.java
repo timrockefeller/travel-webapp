@@ -42,7 +42,7 @@ public class BaseServlet extends HttpServlet {
         }
 
     }
-
+ 
     /**
      * 直接将传入的对象序列化为json，并且写回客户端
      * @param obj
