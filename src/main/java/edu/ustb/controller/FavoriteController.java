@@ -25,12 +25,12 @@ public class FavoriteController extends BaseServlet {
     public void findAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // TODO
-        // User user = (User) request.getSession().getAttribute("user");
-        User user = new User() {
-            {
-                setUid(12);
-            }
-        };
+        User user = (User) request.getSession().getAttribute("user");
+        // User user = new User() {
+        //     {
+        //         setUid(12);
+        //     }
+        // };
 
         List<Favorite> favlist = favoriteService.getFavoritesByUser(user);
 
