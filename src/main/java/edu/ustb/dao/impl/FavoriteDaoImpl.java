@@ -35,5 +35,14 @@ public class FavoriteDaoImpl implements FavoriteDao{
         }
         return favlist;
     }
+
+    public boolean isFavorated(User user, int rid) {
+        String sql = "select select count(*) c from tab_favorite where uid=? and rid=?";
+        int c = template.queryForObject(sql, new BeanPropertyRowMapper<Integer>(Integer.class), user.getUid(), rid);
+        if (c == 0) {
+            return false;
+        }
+        return true;
+    }
     
 }

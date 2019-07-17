@@ -10,4 +10,6 @@ import edu.ustb.domain.User;
  */
 public interface FavoriteDao {
     public List<Favorite> getFavoritesByUser(User user);
+
+    public boolean isFavorated(User user, int rid);
 }

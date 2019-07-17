@@ -10,7 +10,9 @@ import org.junit.Test;
 
 import edu.ustb.dao.FavoriteDao;
 import edu.ustb.dao.impl.FavoriteDaoImpl;
+import edu.ustb.dao.impl.RouteDaoImpl;
 import edu.ustb.domain.Favorite;
+import edu.ustb.domain.Route;
 import edu.ustb.domain.User;
 
 /**
@@ -37,5 +39,12 @@ public class FavDaoTest {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    
+    public void getRouteByRidTest() {
+        int rid = 7;
+        Route route = new RouteDaoImpl().getRouteByRid(rid);
+        System.out.println(route);
     }
 }
