@@ -1,6 +1,7 @@
 package edu.ustb.service;
 
 import edu.ustb.domain.Route;
+import edu.ustb.vo.PageBean;
 
 /**
  * RouteService
@@ -8,5 +9,7 @@ import edu.ustb.domain.Route;
 public interface RouteService {
 
     public Route getRouteByRid(int rid);
+
+    public PageBean<Route> pageQuery(int cid, int currentPage, int pageSize, String rname);
 
 }
