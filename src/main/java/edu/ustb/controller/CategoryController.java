@@ -20,7 +20,7 @@ import edu.ustb.service.impl.CategoryServiceImpl;
  * Servlet implementation class CategoryController
  */
 @WebServlet("/category/*")
-public class CategoryController extends HttpServlet {
+public class CategoryController extends BaseServlet {
 	private CategoryService service=new CategoryServiceImpl();
     
 	public void findAll(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{

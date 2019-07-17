@@ -16,7 +16,7 @@ public class CategoryDaoImpl implements CategoryDao{
 
 	private JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
 	public List<Category> getAllCategory(){
-		List<Category> list = new ArrayList();
+		List<Category> list = null;
 		try {
 			String sql="select cid,cname from tab_category";
 			list = template.query(sql, new BeanPropertyRowMapper<Category>(Category.class));
