@@ -35,5 +35,20 @@ public class FavoriteDaoImpl implements FavoriteDao{
         }
         return favlist;
     }
+
+    public boolean isFavorited(User user, int rid) {
+        String sql = "select count(*) from tab_favorite where uid=? and rid=?";
+        Long count = template.queryForObject(sql, Long.class, user.getUid(), rid);
+        if (count == 0) {
+            return false;
+        }
+        return true;
+    }
+
+ 
+    public int addFavorited(User user, int rid) {
+        String sql = "insert into tab_favorite (rid, date, uid) VALUES (?, ?, ?)";
+        return template.update(sql,rid,new Date(),user.getUid());
+    }
     
 }

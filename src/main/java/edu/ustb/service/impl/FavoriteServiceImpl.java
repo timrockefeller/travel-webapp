@@ -24,4 +24,25 @@ public class FavoriteServiceImpl implements FavoriteService {
         return null;
     }
 
+    public boolean isFavorite(User user, int rid) {
+        try {
+            return favoriteDao.isFavorited(user, rid);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public int addFavorite(User user, int rid) {
+        //check before add
+        if (!isFavorite(user, rid)) {
+            try {
+                return favoriteDao.addFavorited(user, rid);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
+    }
+
 }
