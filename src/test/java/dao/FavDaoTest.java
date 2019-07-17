@@ -18,7 +18,7 @@ import edu.ustb.domain.User;
  */
 public class FavDaoTest {
 
-    @Test
+
     public void getList() {
 
         List<Favorite> favlis = new FavoriteDaoImpl().getFavoritesByUser(new User() {
