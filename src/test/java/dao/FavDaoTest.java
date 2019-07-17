@@ -21,38 +21,28 @@ import edu.ustb.service.impl.RouteServiceImpl;
  * FavDaoTest
  */
 public class FavDaoTest {
-
+    @Test
     public void getList() {
 
-        List<Favorite> favlis = new FavoriteDaoImpl().getFavoritesByUser(new User() {
+        boolean f = new FavoriteServiceImpl().isFavorite(new User() {
             {
-                setUid(12);
+                setUid(26);
             }
-        });
-        // for (Favorite fav : favlis) {
-        // System.out.println(fav.toString());
-        // }
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            String json = mapper.writeValueAsString(favlis);
-
-            System.out.println(json);
-        } catch (JsonProcessingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        }, 4);
+        System.out.println(f);
     }
 
-    
     public void getRouteByRidTest() {
         int rid = 7;
         Route route = new RouteDaoImpl().getRouteByRid(rid);
         System.out.println(route);
     }
+
     @Test
     public void addRouteWithUidAndRid() {
-        User u = new User(){{
-            setUid(12);
+        User u = new User() {
+            {
+                setUid(12);
             }
         };
         int rid = 14;
