@@ -21,7 +21,8 @@ import edu.ustb.vo.ResultInfo;
 
 @WebServlet("/regist.do")
 public class RegistUserController extends HttpServlet {
-	private UserService service = new UserServiceImpl();
+	private static final long serialVersionUID = 7487552116139162266L;
+    private UserService service = new UserServiceImpl();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

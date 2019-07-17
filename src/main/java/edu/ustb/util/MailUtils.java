@@ -1,16 +1,21 @@
 package edu.ustb.util;
 
-import javax.mail.*;
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.Properties;
 
 /**
  * 发邮件工具类
  */
 public final class MailUtils {
-    private static final String USER = "bluecats2020@163.com"; // 发件人称号，同邮箱地址
-    private static final String PASSWORD = "*****"; 
+    private static final String USER = "woshi@163.com"; // 发件人称号，同邮箱地址
+    private static final String PASSWORD = "*******"; 
 
     /**
      *

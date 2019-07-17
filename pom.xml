@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>edu.ustb</groupId>
+  <groupId>moe.iik</groupId>
   <artifactId>ustbtravel</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>ustbtravel Maven Webapp</name>
-  <url>http://maven.apache.org</url>
+  <url>https://iik.moe</url>
   <dependencies>
     <dependency>
 			<groupId>junit</groupId>
@@ -69,7 +69,12 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>4.3.13.RELEASE</version>
 		</dependency>
-    
+
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-servlet-api</artifactId>
+			<version>7.0.47</version>
+		</dependency>
   </dependencies>
   <build>
     <finalName>ustbtravel</finalName>
