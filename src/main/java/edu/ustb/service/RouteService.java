@@ -12,6 +12,5 @@ public interface RouteService {
     PageBean<Route> pageQuery(int cid, int currentPage, int pageSize, String rname);
 
 
-    public PageBean<Route> pageQuery(int cid, int currentPage, int pageSize, String rname);
 
 }

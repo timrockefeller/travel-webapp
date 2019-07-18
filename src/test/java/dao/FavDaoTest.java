@@ -24,23 +24,19 @@ public class FavDaoTest {
 
     public void getList() {
 
-        List<Favorite> favlis = new FavoriteDaoImpl().getFavoritesByUser(new User() {
-            {
-                setUid(12);
-            }
-        });
+        //List<Favorite> favlis = new FavoriteDaoImpl().getFavoritesRidByUser(new User(){{setUid(15);}});
         // for (Favorite fav : favlis) {
         // System.out.println(fav.toString());
-        // }
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            String json = mapper.writeValueAsString(favlis);
-
-            System.out.println(json);
-        } catch (JsonProcessingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+//        // }
+//        ObjectMapper mapper = new ObjectMapper();
+//        try {
+//           // String json = mapper.writeValueAsString(favlis);
+//
+//           //System.out.println(json);
+//        } catch (JsonProcessingException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
     }
 
     
@@ -56,7 +52,7 @@ public class FavDaoTest {
             }
         };
         int rid = 14;
-        int result = new FavoriteServiceImpl().addFavorite(u, rid);
+        int result = new FavoriteServiceImpl().addFavorite(12, rid);
         System.out.println(result);
     }
 }
