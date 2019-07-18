@@ -4,6 +4,7 @@ import edu.ustb.dao.UserDao;
 import edu.ustb.dao.impl.UserDaoImpl;
 import edu.ustb.domain.User;
 import edu.ustb.service.UserService;
+import edu.ustb.util.MailUtils;
 import edu.ustb.util.UuidUtil;
 
 public class UserServiceImpl implements UserService {
@@ -32,9 +33,9 @@ public class UserServiceImpl implements UserService {
         userDao.save(user);
 
         // 3.激活邮件发送，邮件正文？
-        String content = "<a href='http://localhost:9527/ustbtravel1/user/active?code=" + user.getCode()
+        String content = "<a href='http://localhost:8080/ustbtravel/user/active?code=" + user.getCode()
                 + "'>点击激活【去哪儿网】</a>";
-        // MailUtils.sendMail(user.getEmail(),content,"激活邮件");
+        MailUtils.sendMail(user.getEmail(),content,"激活邮件");
         return true;
     }
 
