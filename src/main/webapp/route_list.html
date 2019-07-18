@@ -19,9 +19,10 @@
              //alert(rname);
             //判断rname如果不为null或者""
             if(rname){
-                //url解码
+                //url解码 此处rname返回的是URL编码
                 rname = window.decodeURIComponent(rname);
             }
+            //alert(cid);
             //alert(rname);
             //当页码加载完成后，调用load方法，发送ajax请求加载数据
             load(cid,null,rname);

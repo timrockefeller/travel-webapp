@@ -19,19 +19,19 @@ public interface FavoriteDao {
 
     /**
      * 该用户是否对某一条线路添加收藏
-     * @param user
+     * @param uid
      * @param rid
      * @return
      */
-    public Favorite getFavorited(User user, int rid);
+    public Favorite getFavorited(int uid, int rid);
 
     /**
      * 添加收藏
-     * @param user
+     * @param uid
      * @param rid
      * @return
      */
-    public int addFavorited(User user, int rid);
+    public int addFavorited(int uid, int rid);
 
     /**
      * 根据rid查询该线路的收藏次数

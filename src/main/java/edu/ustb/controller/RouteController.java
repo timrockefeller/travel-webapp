@@ -15,78 +15,90 @@ import edu.ustb.service.FavoriteService;
 import edu.ustb.service.RouteService;
 import edu.ustb.service.impl.FavoriteServiceImpl;
 import edu.ustb.service.impl.RouteServiceImpl;
+import edu.ustb.vo.PageBean;
 
 /**
  * RouteController
  */
-@WebServlet("/route/*") //
+
+@WebServlet(name = "RouteServlet", urlPatterns = "/route/*")
 public class RouteController extends BaseServlet {
 
     private RouteService routeService = new RouteServiceImpl();
     private FavoriteService favoriteService = new FavoriteServiceImpl();
 
-    /**
-     * 根据rid，返回一个Route类型对象
-     * 
-     * @param rid
-     * @return (1)Route Obj (2) Empty Obj "{}“
-     * @throws ServletException
-     * @throws IOException
-     */
-    public void findOne(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int rid = Integer.parseInt(request.getParameter("rid"));
+    public void pageQuery(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String currentPageStr = request.getParameter("currentPage");
+        String pageSizeStr = request.getParameter("pageSize");
+        String cidStr = request.getParameter("cid");
 
-        Route route = routeService.getRouteByRid(rid);
+        //接收rname线路名称
+        String rname = request.getParameter("rname");
+        rname = new String(rname.getBytes("utf-8"), "utf-8");
 
-        String json = null;
-        if (route == null) {
-            json = "{}";
-        } else {
-            ObjectMapper mapper = new ObjectMapper();
-            json = mapper.writeValueAsString(route);
+        int cid = 0;
+        if (cidStr != null && cidStr.length() > 0 && !"null".equals(cidStr)) {
+            cid = Integer.parseInt(cidStr);
         }
 
-        response.setContentType("application/json;charset=utf-8");
-        response.getWriter().write(json);
+        int currentPage = 0;
+        if (currentPageStr != null && currentPageStr.length() > 0) {
+            currentPage = Integer.parseInt(currentPageStr);
+        } else {
+            currentPage = 1;
+        }
+
+        int pageSize = 0;
+        if (pageSizeStr != null && pageSizeStr.length() > 0) {
+            pageSize = Integer.parseInt(pageSizeStr);
+        } else {
+            pageSize = 5;
+        }
+
+        PageBean<Route> routePageBean = routeService.pageQuery(cid, currentPage, pageSize, rname);
+
+        writeValue(routePageBean,response);
     }
 
-    /**
-     * 查询当前是否已标记收藏 需要session已保存user字段
-     * 
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
+    public void findOne(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String rid = request.getParameter("rid");
+        int r = Integer.parseInt(rid);
+        Route route = routeService.getRouteByRid(r);
+        writeValue(route,response );
+    }
+
     public void isFavorite(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String rid = request.getParameter("rid");
+        int r = Integer.parseInt(rid);
         User user = (User) request.getSession().getAttribute("user");
-        int rid = Integer.parseInt(request.getParameter("rid"));
+        int uid;
+        if (user == null) {
+            uid = 0;
+        } else {
+            uid = user.getUid();
+        }
 
-        Boolean favFlag = favoriteService.isFavorite(user, rid);
-        ObjectMapper mapper = new ObjectMapper();
-        String json = mapper.writeValueAsString(favFlag);
-        response.setContentType("application/json;charset=utf-8");
-        response.getWriter().write(json);
+        boolean flag = favoriteService.isFavorite(r, uid);
+
+        writeValue(flag,response);
     }
 
-    /**
-     * 为当前用户收藏指定Route
-     * 
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
     public void addFavorite(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String rid = request.getParameter("rid");
+        int r = Integer.parseInt(rid);
         User user = (User) request.getSession().getAttribute("user");
-        int rid = Integer.parseInt(request.getParameter("rid"));
-        favoriteService.addFavorite(user, rid);
+        int uid;
+        if (user == null) {
+            return;
+        } else {
+            uid = user.getUid();
+        }
 
-        //TODO whether responce in none-param callback
-        response.setContentType("application/json;charset=utf-8");
-        response.getWriter().write("{}");
+        favoriteService.addFavorite(r, uid);
     }
-
 }
+

@@ -37,11 +37,11 @@ public class FavoriteDaoImpl implements FavoriteDao{
         return favlist;
     }
 
-    public Favorite getFavorited(User user, int rid) {
+    public Favorite getFavorited(int uid, int rid) {
         Favorite favorite = null;
         try {
             String sql = "select * from tab_favorite where rid = ? and uid = ?";
-            favorite = template.queryForObject(sql,new BeanPropertyRowMapper<Favorite>(Favorite.class),user.getUid(),rid );
+            favorite = template.queryForObject(sql,new BeanPropertyRowMapper<Favorite>(Favorite.class),uid,rid );
         } catch (DataAccessException e) {
             System.out.println("did not found fav, user not logged in?");
         }
@@ -49,9 +49,9 @@ public class FavoriteDaoImpl implements FavoriteDao{
     }
 
  
-    public int addFavorited(User user, int rid) {
+    public int addFavorited(int uid, int rid) {
         String sql = "insert into tab_favorite (rid, date, uid) VALUES (?, ?, ?)";
-        return template.update(sql, rid, new Date(), user.getUid());
+        return template.update(sql, rid, new Date(), uid);
     }
 
     
