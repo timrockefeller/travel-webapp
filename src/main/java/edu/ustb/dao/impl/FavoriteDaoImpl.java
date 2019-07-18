@@ -35,7 +35,7 @@ public class FavoriteDaoImpl implements FavoriteDao{
         Favorite favorite = null;
         try {
             String sql = "select * from tab_favorite where rid = ? and uid = ?";
-            favorite = template.queryForObject(sql,new BeanPropertyRowMapper<Favorite>(Favorite.class),uid,rid );
+            favorite = template.queryForObject(sql,new BeanPropertyRowMapper<Favorite>(Favorite.class),rid,uid );
         } catch (DataAccessException e) {
             System.out.println("did not found fav, user not logged in? : "+uid);
         }
