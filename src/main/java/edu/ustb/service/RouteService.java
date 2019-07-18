@@ -8,7 +8,9 @@ import edu.ustb.vo.PageBean;
  */
 public interface RouteService {
 
-    public Route getRouteByRid(int rid);
+    Route getRouteByRid(int rid);
+    PageBean<Route> pageQuery(int cid, int currentPage, int pageSize, String rname);
+
 
     public PageBean<Route> pageQuery(int cid, int currentPage, int pageSize, String rname);
 

@@ -34,7 +34,7 @@
         $("#search-button").click(function () {
             //线路名称
             var rname = $("#search_input").val();
-            var cid = getParameter("cid");
+            var cid = getParameter("cid");//返回CID（在GetParameter.js里封装完成）
             // 跳转路径 
             location.href = "http://localhost:9527/ustbtravel1/route_list.html?cid=" + cid + "&rname=" + rname;
         });

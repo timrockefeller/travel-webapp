@@ -4,6 +4,8 @@ import java.util.List;
 
 import edu.ustb.domain.Route;
 
+import java.util.List;
+
 /**
  * RouteDao
  */
@@ -28,4 +30,5 @@ public interface RouteDao {
      * @return
      */
     public List<Route> findByPage(int cid, int start, int pageSize, String rname);
+    Route findOne(int rid);
 }
