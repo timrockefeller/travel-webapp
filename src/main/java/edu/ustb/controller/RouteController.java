@@ -67,7 +67,7 @@ public class RouteController extends BaseServlet {
         } else {
             uid = user.getUid();
         }
-
+        favoriteService.addFavorite(r, uid);
         // TODO whether responce in none-param callback
         response.setContentType("application/json;charset=utf-8");
         response.getWriter().write("{}");
