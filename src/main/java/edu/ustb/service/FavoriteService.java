@@ -25,7 +25,7 @@ public interface FavoriteService {
      * @param rid
      * @return (1)True if have count in tab_fav table,False if not (2)False if Error occured
      */
-    public boolean isFavorite(int rid,int uid);
+    public boolean isFavorite(int uid,int rid);
 
     /**
      * 用户执行收藏Route

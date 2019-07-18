@@ -51,7 +51,7 @@ public class RouteController extends BaseServlet {
             uid = user.getUid();
         }
 
-        boolean flag = favoriteService.isFavorite(r, uid);
+        boolean flag = favoriteService.isFavorite(uid,r );
 
         writeValue(flag,response);
     }
@@ -67,7 +67,7 @@ public class RouteController extends BaseServlet {
         } else {
             uid = user.getUid();
         }
-        favoriteService.addFavorite(r, uid);
+        favoriteService.addFavorite(uid,r );
         // TODO whether responce in none-param callback
         response.setContentType("application/json;charset=utf-8");
         response.getWriter().write("{}");
