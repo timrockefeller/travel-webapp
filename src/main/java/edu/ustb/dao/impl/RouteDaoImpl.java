@@ -27,13 +27,13 @@ public class RouteDaoImpl implements RouteDao {
     }
 
     public int findTotalCount(int cid, String rname) {
-        String sql = "select count(*) from tab_route where cid = ?";
-        return template.queryForObject(sql, Integer.class, cid);
+        String sql = "select count(*) from tab_route where cid = ? and rname like ?";
+        return template.queryForObject(sql, Integer.class, cid,"%"+rname+"%");
     }
 
     public List<Route> findByPage(int cid, int start, int pageSize, String rname) {
-        String sql = "select * from tab_route where cid = ? limit ? , ?";
-        return template.query(sql, new BeanPropertyRowMapper<Route>(Route.class), cid, start, pageSize);
+        String sql = "select * from tab_route where cid = ? and rname like ? limit ? , ? ";
+        return template.query(sql, new BeanPropertyRowMapper<Route>(Route.class), cid,"%"+rname+"%", start, pageSize);
     }
 
 }
