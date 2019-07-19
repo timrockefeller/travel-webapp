@@ -1,8 +1,8 @@
 #### todo list
 
-- [ ] 答辩ppt
-- [ ] ER图
-- [ ] 创建数据库、设计文档
+- [x] 答辩ppt
+- [x] ER图
+- [x] 创建数据库、设计文档
 
 #### work list
 - 登录*XCY*
@@ -47,4 +47,4 @@ public User findByUsername(String username) {
         }
         return user;
     }
-```    
+```
